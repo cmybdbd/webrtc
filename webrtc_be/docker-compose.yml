@@ -1,0 +1,23 @@
+version: '3'
+services: 
+    web: 
+      container_name: rtc_server
+      image: rtc_server_image
+      build: .
+      restart: always
+      volumes: 
+        - .:/docker_api
+      expose:
+        - 1111
+    nginx: 
+      container_name: rtc_server_nginx
+      restart: always
+      build: ./nginx
+      depends_on:
+        - web
+      ports:
+        - 1112:80
+      volumes:
+        - .:/docker_api
+        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+

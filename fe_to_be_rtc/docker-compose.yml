@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    container_name: webrtc_frontend_container
+    build: .
+    image: webrtc_frontend_image
+    ports: 
+      - '9191:3000'
